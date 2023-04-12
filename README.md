@@ -10,7 +10,7 @@
 - Test case
 - Action
 - Assert
-3. Liệt kê tất cả các test cases mà bạn có thể nghi ra để kiểm tra 1 mảng có phải là mảng số tăng dần hay không.
+3. Liệt kê tất cả các test cases mà bạn có thể nghĩ ra để kiểm tra 1 mảng có phải là mảng số tăng dần hay không.
 - checkArrIsAsc([1, 2, 3])
 - checkArrIsAsc([1.1, 1.2, 1.3])
 - checkArrIsAsc([-1, 0, 1])
