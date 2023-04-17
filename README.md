@@ -26,3 +26,4 @@
 - checkArrIsAsc([1, 'b', 'c'])
 - checkArrIsAsc([null, 1, 2])
 - checkArrIsAsc([undefined, 1, 2])
+- checkArrIsAsc(1)
