@@ -46,15 +46,20 @@ export class Order implements IOrder {
     this.lineItemList = [];
   }
 
+  getLineItemDiscount(lineItem: LineItem) {
+    let discountMax = 0;
+    lineItem.product.discount.forEach((discount: Discount) => {
+      if (lineItem.quantity >= discount.conditionQuantity && discount.percent > discountMax) {
+        discountMax = discount.percent;
+      }
+    });
+    return discountMax;
+  }
+
   getTotalPayment() {
     return this.lineItemList.reduce((sum, lineItem: LineItem) => {
-      let discountMax = 0;
-      lineItem.product.discount.forEach((discount: Discount) => {
-        if (lineItem.quantity >= discount.conditionQuantity && discount.percent > discountMax) {
-          discountMax = discount.percent;
-        }
-      });
-      return sum + lineItem.product.price * lineItem.quantity * (100 - discountMax) / 100;
+      const discount = this.getLineItemDiscount(lineItem);
+      return sum + lineItem.product.price * lineItem.quantity * (100 - discount) / 100;
     }, 0);
   }
 }
