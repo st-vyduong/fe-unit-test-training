@@ -8,7 +8,6 @@ import { logger } from 'redux-logger';
 
 import '@app/core/services/i18n.service';
 import { RouterOutlet } from '@core/modules/custom-router-dom';
-import { Footer, Header } from '@shared/components/layout/index';
 
 import appRoutes from './app.routes';
 import appMiddleware from './app.middleware';
@@ -28,13 +27,7 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
       <AppSuspense fallback={<></>}>
-        <Header />
-      </AppSuspense>
-      <AppSuspense fallback={<></>}>
         <RouterOutlet routes={appRoutes} />
-      </AppSuspense>
-      <AppSuspense fallback={<></>}>
-        <Footer />
       </AppSuspense>
     </BrowserRouter>
   </Provider>

@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { environment } from '@config/environment';
 import AuthHelper from '../helpers/authHelper';
+import { getLS, KEYS } from '../helpers/storageHelper';
 
 export class ApiService {
 
@@ -85,9 +86,13 @@ export class ApiService {
   }
 
   private _setInterceptors() {
-    this.axiosInstance.interceptors.request.use(
-      (request: AxiosRequestConfig) => this.authHelper.setAuthHeader(request),
-    );
+    this.axiosInstance.interceptors.request.use((request: any) => {
+      const token = getLS(KEYS.ACCESS_TOKEN);
+      if (token) {
+        request.headers['Authorization'] = `Bearer ${token}`;
+      }
+      return request;
+    });
     this.axiosInstance.interceptors.response.use(
       (response: AxiosResponse) => response,
       (error: AxiosError) => this._handleError(error)
