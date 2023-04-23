@@ -51,6 +51,7 @@ describe('test <UserDetail />', () => {
     expect(screen.getByText('Name')).toBeInTheDocument();
     expect(mockDetailFunc).toBeCalled();
   });
+
   test('get user detail error', async () => {
     mockDetailFunc.mockImplementation(() => Promise.reject(mockErrorData));
     renderWithProviders(<UserDetail />);

@@ -58,6 +58,7 @@ describe('test <UserList />', () => {
     expect(screen.getByText('Name')).toBeInTheDocument();
     expect(mockListFunc).toBeCalled();
   });
+
   test('get user list failed', async () => {
     mockListFunc.mockImplementation(() => Promise.reject(mockErrorData));
     renderWithProviders(<UserList />);
@@ -66,6 +67,7 @@ describe('test <UserList />', () => {
     expect(mockListFunc).toBeCalled();
     expect(screen.getByText('Error')).toBeInTheDocument();
   });
+
   test('user detail link is correct', async () => {
     mockListFunc.mockImplementation(() => Promise.resolve(mockSuccessData));
     renderWithProviders(<UserList />);
@@ -73,6 +75,7 @@ describe('test <UserList />', () => {
     const link = screen.getByRole('link');
     expect(link).toHaveAttribute('href', '/users/1');
   });
+
   test('function delete user', async () => {
     mockListFunc.mockImplementation(() => Promise.resolve(mockSuccessData));
     renderWithProviders(<UserList />);
